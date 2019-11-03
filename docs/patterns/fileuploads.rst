@@ -121,7 +121,7 @@ Alternatively you can register `uploaded_file` as `build_only` rule and
 use the :class:`~werkzeug.wsgi.SharedDataMiddleware`.  This also works with
 older versions of Flask::
 
-    from werkzeug import SharedDataMiddleware
+    from werkzeug.middleware.shared_data import SharedDataMiddleware
     app.add_url_rule('/uploads/<filename>', 'uploaded_file',
                      build_only=True)
     app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
@@ -147,7 +147,7 @@ config key::
     from flask import Flask, Request
 
     app = Flask(__name__)
-    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
 The code above will limit the maximum allowed payload to 16 megabytes.
 If a larger file is transmitted, Flask will raise a
